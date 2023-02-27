@@ -26,7 +26,10 @@ fun main(){
     //7. 반복문 (For, While)
     forAndWhile()
 
-    //8. nullable  여기 할 차례 38:30
+    //8. Nullable, NonNull
+    nullcheck()
+
+    //9. Classsms -> ClassPratice.kt 에서 확인!
 
 }
 
@@ -141,4 +144,40 @@ fun forAndWhile(){
         println("current index : ${index}")
         index++
     }
+}
+
+// 8. Nullable / NonNull
+fun nullcheck() {
+    //NPE : Null Pointer Exception
+    var name = "joyce"
+    //var name :String = null       오류 (nonnull이라)
+    var nullName: String? = null //not null type -> ? 통해 nullable
+
+    // var nullNameInUpperCase=nullName.toUpperCase()  오류 (nonnull)
+    var nullNameInUpperCase=nullName?.toUpperCase()  // ?  통해 nullable
+
+    // ?:
+    val lastName : String? =null
+    val fullName =name +" "+ (lastName?: "No lastName") //lastName이 null이면 지정된 값 삽입
+    println(fullName)
+
+    //ignoreNulls(name) 오류
+
+    // !!           <- 정말 확실하게 null이 안들어가는거 아닌면 쓰는 거 지양(오류나기 쉬움)
+    fun ignoreNulls(str:String?){
+        // val mNotNull:String = str    오류
+        val mNotNull:String = str!! //str이 null이 아님을 보증! null값이 들어갈 일이 없음을 알려줌(컵파일러한테)
+
+//        val email :String = "joycehongXXXX@nana.com"
+//        email?.let{           불필요한 ?
+//
+//        }
+        val email :String? = "joycehongXXXX@nana.com"
+        email?.let{ // email이 null이 아니면 let{ 이거 } 를해라
+            println("my email is ${email}")
+        }
+    }
+
+    ignoreNulls(name)
+
 }
