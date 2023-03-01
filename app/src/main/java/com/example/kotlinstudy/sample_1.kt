@@ -1,7 +1,5 @@
 package com.example.kotlinstudy
 
-import android.annotation.SuppressLint
-
 fun main(){
     //함수
     helloWorld()
